@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Home from './Pages/Home';
-import Upcoming from './Pages/Upcoming';
-import PopularMovies from './Pages/Popular';
-import Navbar from './UiLayout/Navbar';
-import Footer from './UiLayout/Footer';
-import Pagination from './Components/Pagination';
-import About from './Pages/About';
-import MovieDetails from './Pages/MovieDetails';
+import Home from './Pages/Home/index.jsx';
+import Upcoming from './Pages/Upcoming/index.jsx';
+import PopularMovies from './Pages/Popular/index.jsx';
+import Navbar from './UiLayout/Navbar/index.jsx';
+import Footer from './UiLayout/Footer/index.jsx';
+import Pagination from './Components/Pagination/index.jsx';
+import About from './Pages/About/index.jsx';
+import MovieDetails from './Pages/MovieDetails/index.jsx';
 
-import {fetchPopularMovies,fetchUpcomingMovies,searchMovies} from './Services/index';
+import {fetchPopularMovies,fetchUpcomingMovies,searchMovies} from './Services/index.jsx';
 
 const App = () => {
   const [data, setData] = useState([]);
