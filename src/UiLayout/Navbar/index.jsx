@@ -20,8 +20,10 @@ const Navbar = ({ onSearch }) => {
       </div>
 
       <div className="nav-links">
-        <Link to="/">Home</Link>
+        <Link to="/ ">Home</Link>
         <Link to="/upcoming">Upcoming</Link>
+        <Link to="/popular">Popular</Link>
+        <Link to="/about">About</Link>
       </div>
 
       <form className="search-form" onSubmit={handleSubmit}>
@@ -38,6 +40,6 @@ const Navbar = ({ onSearch }) => {
       </form>
     </nav>
   );
-};
+}
 
 export default Navbar;

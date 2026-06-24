@@ -1,0 +1,26 @@
+.About {
+  padding: 40px;
+  max-width: 900px;
+  margin: auto;
+
+  h1 {
+    color: #032541;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  p {
+    font-size: 18px;
+    line-height: 1.8;
+    margin-bottom: 15px;
+  }
+
+  ul {
+    margin-left: 30px;
+
+    li {
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+  }
+}
