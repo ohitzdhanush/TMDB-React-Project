@@ -8,8 +8,7 @@ import Footer from './UiLayout/Footer/index.jsx';
 import Pagination from './Components/Pagination/index.jsx';
 import About from './Pages/About/index.jsx';
 import MovieDetails from './Pages/MovieDetails/index.jsx';
-
-import {fetchPopularMovies,fetchUpcomingMovies,searchMovies} from './Services/index.jsx';
+import {fetchPopularMovies,fetchUpcomingMovies,searchMovies} from './Services/index';
 
 const App = () => {
   const [data, setData] = useState([]);
