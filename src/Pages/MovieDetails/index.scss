@@ -7,6 +7,23 @@
     border-radius: 10px;
   }
 }
+.trailer-btn {
+  margin-top: 20px;
+  padding: 12px 24px;
+  background: #e50914;
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+
+  &:hover {
+    background: #b20710;
+    transform: scale(1.05);
+  }
+}
 .movie-info {
   flex: 1;
   h1 {
