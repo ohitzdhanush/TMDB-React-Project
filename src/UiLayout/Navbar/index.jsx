@@ -48,6 +48,6 @@ const Navbar = ({ onSearch }) => {
       </form>
     </nav>
   );
-};
+}
 
 export default Navbar;

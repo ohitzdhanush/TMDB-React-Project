@@ -42,8 +42,7 @@ export async function searchMovies(query, page = 1) {
 
 // Movie Details
 export async function fetchMovieDetails(id) {
-  const response = await axios.get(
-    `${baseUrl}/movie/${id}`,
+  const response = await axios.get(`${baseUrl}/movie/${id}`,
     {
       params: {
         api_key,
