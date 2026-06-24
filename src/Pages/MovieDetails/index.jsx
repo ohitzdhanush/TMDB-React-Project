@@ -42,9 +42,7 @@ const MovieDetails = () => {
         </p>
         <p>{movie.overview}</p>
         <a href={trailer} target="_blank" rel="noopener noreferrer">
-        <button className="trailer-btn">
-          Watch Trailer
-        </button>
+        <button className="trailer-btn"> Watch Trailer</button>
       </a>
       </div>
     </div>
