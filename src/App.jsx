@@ -7,6 +7,7 @@ import Navbar from './UiLayout/Navbar';
 import Footer from './UiLayout/Footer';
 import Pagination from './Components/Pagination';
 import About from './Pages/About';
+import MovieDetails from './Pages/MovieDetails';
 
 import {fetchPopularMovies,fetchUpcomingMovies,searchMovies} from './Services';
 
@@ -88,6 +89,7 @@ const App = () => {
               </> 
             }/>
           <Route path="/about" element={<About />}/>
+          <Route path="/movie/:id" element={<MovieDetails />}/>
         </Routes>
         <Footer />
       </div>

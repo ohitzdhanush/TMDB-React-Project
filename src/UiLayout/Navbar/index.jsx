@@ -1,9 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import useDebounce from "../../Hooks/useDebounce";
 import "./index.scss";
 
 const Navbar = ({ onSearch }) => {
   const [searchTerm, setSearchTerm] = useState("");
+  const debouncedSearch = useDebounce(searchTerm, 500);
+
+  useEffect(() => {
+    if (debouncedSearch.trim()) {
+      onSearch(debouncedSearch);
+    }
+  }, [debouncedSearch, onSearch]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -20,7 +28,7 @@ const Navbar = ({ onSearch }) => {
       </div>
 
       <div className="nav-links">
-        <Link to="/ ">Home</Link>
+        <Link to="/">Home</Link>
         <Link to="/upcoming">Upcoming</Link>
         <Link to="/popular">Popular</Link>
         <Link to="/about">About</Link>
@@ -40,6 +48,6 @@ const Navbar = ({ onSearch }) => {
       </form>
     </nav>
   );
-}
+};
 
 export default Navbar;

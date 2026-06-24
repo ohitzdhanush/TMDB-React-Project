@@ -1,7 +1,11 @@
-import "./index.scss";
+import './index.scss';
 
-export const Card = ({ children }) => {
-  return <div className="card">{children}</div>;
+export const Card = ({ children, onClick }) => {
+  return (
+    <div className="card" onClick={onClick}>
+      {children}
+    </div>
+  );
 };
 
 export const CardImage = ({ src }) => {
@@ -23,7 +27,7 @@ export const CardTitle = ({ title }) => {
 export const CardDescription = ({ description }) => {
   return (
     <div className="card-description">
-      <p>{description}...</p>
+      <p>{description}</p>
     </div>
   );
 };
