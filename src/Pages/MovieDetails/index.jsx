@@ -75,7 +75,9 @@ const MovieDetails = () => {
         height: "450",
         playerVars: { autoplay: 1,},
       }}/> </div> 
-      )}{!showTrailer && (
+      )}
+      <h2 className="cast-heading">Top Cast</h2>
+      {!showTrailer && (
     <div className="cast-container">
       {cast.map((actor) => (
       <div key={actor.id} className="cast-card">

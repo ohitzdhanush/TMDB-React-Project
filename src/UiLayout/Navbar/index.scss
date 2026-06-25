@@ -1,24 +1,101 @@
 .navbar {
-  background: #032541;
-  color: white;
-  padding: 20px 40px;
+  width: 100%;
+  height: 80px;
+  background: #1f2342;
 
   display: flex;
   justify-content: space-between;
   align-items: center;
 
+  padding: 0 40px;
+  box-sizing: border-box;
+}
+
+.logo h2 {
+  color: #FFD369;
+  font-size: 34px;
+  font-weight: 700;
+}
+
+.nav-links {
+  display: flex;
+  gap: 28px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 500;
+  transition: .3s;
+}
+
+.nav-links a:hover {
+  color: #FFD369;
+}
+
+.search-form {
+  display: flex;
+  align-items: center;
+}
+
+.search-form input {
+  width: 220px;
+  height: 42px;
+
+  border: none;
+  outline: none;
+
+  padding: 0 15px;
+
+  border-radius: 8px 0 0 8px;
+
+  font-size: 16px;
+}
+
+.search-form button {
+  height: 42px;
+
+  border: none;
+
+  background: #ff7a00;
+  color: white;
+
+  padding: 0 18px;
+
+  cursor: pointer;
+
+  border-radius: 0 8px 8px 0;
+
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.search-form button:hover {
+  background: #e56d00;
+}
+
+/* Mobile */
+
+@media (max-width: 900px) {
+  .navbar {
+    height: auto;
+    flex-direction: column;
+    gap: 18px;
+    padding: 20px;
+  }
+
+  .logo h2 {
+    font-size: 28px;
+  }
+
   .nav-links {
-    display: flex;
     gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 
-    a {
-      color: white;
-      text-decoration: none;
-      font-size: 18px;
-
-      &:hover {
-        color: #01b4e4;
-      }
-    }
+  .search-form input {
+    width: 180px;
   }
 }
