@@ -34,3 +34,32 @@
     line-height: 1.8;
   }
 }
+.youtube-player {
+  margin-top: 30px;
+
+  h2 {
+    color: #fff;
+    margin-bottom: 15px;
+  }
+
+  iframe {
+    width: 100%;
+    border-radius: 10px;
+  }
+}
+
+.trailer-btn {
+  margin-top: 20px;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  background: #e50914;
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+.trailer-btn:hover {
+  background: #b20710;
+}

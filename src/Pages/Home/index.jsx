@@ -1,16 +1,10 @@
 import React from 'react';
-import {
-  Card,
-  CardTitle,
-  CardImage,
-  CardDescription
-} from '../../Components/Cards';
+import {Card,CardTitle,CardImage,CardDescription} from '../../Components/Cards';
 
 import './index.scss';
 import { useNavigate } from 'react-router-dom';
 
 const Home = ({ data }) => {
-
   const navigate = useNavigate();
 
   return (

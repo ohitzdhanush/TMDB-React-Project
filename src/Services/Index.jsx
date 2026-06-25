@@ -52,3 +52,15 @@ export async function fetchMovieDetails(id) {
 
   return response.data;
 }
+
+//Movie Trailer
+export async function fetchMovieTrailer(id) {
+  const response = await axios.get(`${baseUrl}/movie/${id}/videos`,
+    {
+      params: {
+        api_key,
+      },
+    }
+  );
+  return response.data.results;
+}
