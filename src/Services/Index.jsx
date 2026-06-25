@@ -64,3 +64,14 @@ export async function fetchMovieTrailer(id) {
   );
   return response.data.results;
 }
+//Movie Cast
+export async function fetchMovieCast(id) {
+  const response = await axios.get(`${baseUrl}/movie/${id}/credits`,
+    {
+      params: {
+        api_key,
+      },
+    }
+  );
+  return response.data.cast;
+}
