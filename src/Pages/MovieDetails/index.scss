@@ -1,65 +1,175 @@
 .movie-details {
-  display: flex;
-  gap: 30px;
-  padding: 30px;
-  img {
-    width: 350px;
-    border-radius: 10px;
-  }
-}
-.trailer-btn {
-  margin-top: 20px;
-  padding: 12px 24px;
-  background: #e50914;
-  color: #fff;
-  border: none;
-  border-radius: 30px;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: 0.3s ease;
+  max-width: 1200px;
+  margin: 50px auto;
+  padding: 20px;
 
-  &:hover {
-    background: #b20710;
-    transform: scale(1.05);
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+
+  img {
+    width: 320px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   }
 }
+
 .movie-info {
   flex: 1;
+
   h1 {
+    font-size: 40px;
     margin-bottom: 20px;
+    color: #111;
   }
+
   p {
-    margin-bottom: 15px;
+    font-size: 18px;
     line-height: 1.8;
-  }
-}
-.youtube-player {
-  margin-top: 30px;
-
-  h2 {
-    color: #fff;
-    margin-bottom: 15px;
+    color: #333;
+    margin-bottom: 18px;
   }
 
-  iframe {
-    width: 100%;
-    border-radius: 10px;
+  strong {
+    color: #000;
   }
 }
 
 .trailer-btn {
   margin-top: 20px;
-  padding: 12px 24px;
+  padding: 12px 25px;
+  background: #e50914;
+  color: white;
   border: none;
   border-radius: 8px;
-  background: #e50914;
-  color: #fff;
   cursor: pointer;
-  font-size: 16px;
-  transition: 0.3s;
+  font-size: 17px;
+  font-weight: 600;
+  transition: 0.3s ease;
 }
 
 .trailer-btn:hover {
   background: #b20710;
+  transform: translateY(-2px);
+}
+
+/* ===========================
+   Trailer Popup
+=========================== */
+
+.trailer-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 9999;
+
+  animation: fadeIn 0.3s ease;
+}
+
+.trailer-content {
+  position: relative;
+
+  width: 800px;
+  max-width: 90%;
+
+  background: #111;
+
+  border-radius: 12px;
+  overflow: hidden;
+
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+
+  animation: popup 0.3s ease;
+}
+
+.trailer-content iframe {
+  width: 100% !important;
+  height: 450px !important;
+  display: block;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+
+  width: 38px;
+  height: 38px;
+
+  border: none;
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+
+  font-size: 20px;
+  cursor: pointer;
+
+  transition: 0.3s;
+
+  z-index: 100;
+}
+
+.close-btn:hover {
+  background: #e50914;
+  transform: rotate(90deg);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes popup {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* ===========================
+   Responsive
+=========================== */
+
+@media (max-width: 768px) {
+  .movie-details {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    img {
+      width: 250px;
+    }
+  }
+
+  .movie-info h1 {
+    font-size: 30px;
+  }
+
+  .movie-info p {
+    font-size: 16px;
+  }
+
+  .trailer-content {
+    width: 95%;
+  }
+
+  .trailer-content iframe {
+    height: 250px !important;
+  }
 }
