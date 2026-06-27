@@ -8,8 +8,9 @@ import MovieDetails from "./Pages/MovieDetails";
 import Navbar from "./UiLayout/Navbar";
 import Footer from "./UiLayout/Footer";
 import Pagination from "./Components/Pagination";
+import CastDetails from "./Pages/CastDetails";
 
-import {fetchPopularMovies,fetchUpcomingMovies,fetchMoviesByLanguage,searchMovies,} from "./Services/Index";
+import {fetchPopularMovies,fetchUpcomingMovies,fetchMoviesByLanguage,searchMovies,fetchMovieCast} from "./Services/Index";
 
 const App = () => {
   const [data, setData] = useState([]);
@@ -104,6 +105,10 @@ const App = () => {
               </>
             }
           />
+          <Route
+  path="/person/:id"
+  element={<CastDetails />}
+/>
           {/* Upcoming */}
           <Route
             path="/upcoming"

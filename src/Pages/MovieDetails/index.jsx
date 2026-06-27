@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import {
-  fetchMovieDetails,
-  fetchMovieTrailer,
-  fetchMovieCast,
-} from "../../Services/Index";
+import {fetchMovieDetails,fetchMovieTrailer,fetchMovieCast,} from "../../Services/Index";
+import { useNavigate } from "react-router-dom";
 import YouTube from "react-youtube";
 import "./index.scss";
 
+
+
 const MovieDetails = () => {
+  const navigate = useNavigate();
   const { id } = useParams();
 
   const [movie, setMovie] = useState(null);
@@ -157,11 +157,10 @@ const MovieDetails = () => {
         <div className="cast-container">
 
           {cast.map((actor) => (
-            <div
-              key={actor.id}
-              className="cast-card"
-              title={actor.name}
-            >
+        <div
+            key={actor.id}
+            className="cast-card"
+            onClick={() => navigate(`/person/${actor.id}`)}>
 
               <img
                 loading="lazy"

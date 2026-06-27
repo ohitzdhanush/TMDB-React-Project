@@ -86,4 +86,17 @@ export async function fetchMoviesByLanguage(language) {
     }
   );
   return response.data.results;
+}
+
+export const fetchPersonDetails = async (id) => {
+  const response = await axios.get(
+    `${baseUrl}/person/${id}`,
+    {
+      params: {
+        api_key,
+      },
+    }
+  );
+
+  return response.data;
 };
