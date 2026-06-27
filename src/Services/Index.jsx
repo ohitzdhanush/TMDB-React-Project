@@ -75,3 +75,15 @@ export async function fetchMovieCast(id) {
   );
   return response.data.cast;
 }
+// Languages
+export async function fetchMoviesByLanguage(language) {
+  const response = await axios.get(`${baseUrl}/discover/movie`,
+    {
+      params: {
+        api_key,
+        with_original_language: language,
+      },
+    }
+  );
+  return response.data.results;
+};

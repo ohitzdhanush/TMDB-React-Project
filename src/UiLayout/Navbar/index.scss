@@ -1,38 +1,140 @@
+/* ===========================
+          NAVBAR
+=========================== */
+
 .navbar {
   width: 100%;
-  height: 80px;
-  background: #1f2342;
+  height: 90px;
+  padding: 0 50px;
+  box-sizing: border-box;
 
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
 
-  padding: 0 40px;
-  box-sizing: border-box;
+  background: linear-gradient(135deg, #1f2348, #2d315d);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.18);
+
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* ===========================
+            LOGO
+=========================== */
+
+.logo {
+  display: flex;
+  align-items: center;
 }
 
 .logo h2 {
-  color: #FFD369;
-  font-size: 34px;
+  margin: 0;
+
+  font-size: 2rem;
   font-weight: 700;
+  letter-spacing: 1px;
+
+  color: #ffc857;
+
+  cursor: pointer;
+  transition: .3s;
 }
+
+.logo h2:hover {
+  color: #ff9800;
+}
+
+/* ===========================
+          NAV LINKS
+=========================== */
 
 .nav-links {
   display: flex;
-  gap: 28px;
+  align-items: center;
+  gap: 35px;
 }
 
 .nav-links a {
-  color: white;
+  color: #ffffff;
   text-decoration: none;
+
   font-size: 18px;
   font-weight: 500;
+
+  position: relative;
+
+  transition: .3s;
+}
+
+.nav-links a::after {
+  content: "";
+
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+
+  width: 0%;
+  height: 3px;
+
+  background: #ff9800;
+  border-radius: 20px;
+
   transition: .3s;
 }
 
 .nav-links a:hover {
-  color: #FFD369;
+  color: #ff9800;
 }
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+/* ===========================
+        RIGHT SECTION
+=========================== */
+
+.right-section {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* ===========================
+      LANGUAGE SELECT
+=========================== */
+
+.language-select select {
+  width: 170px;
+  height: 48px;
+
+  border: none;
+  outline: none;
+
+  border-radius: 12px;
+
+  padding: 0 15px;
+
+  background: white;
+  color: #222;
+
+  font-size: 15px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: .3s;
+}
+
+.language-select select:hover {
+  box-shadow: 0 0 12px rgba(255, 152, 0, .35);
+}
+
+/* ===========================
+          SEARCH
+=========================== */
 
 .search-form {
   display: flex;
@@ -40,62 +142,127 @@
 }
 
 .search-form input {
-  width: 220px;
-  height: 42px;
+  width: 300px;
+  height: 48px;
+
+  padding: 0 18px;
 
   border: none;
   outline: none;
 
-  padding: 0 15px;
+  border-radius: 12px 0 0 12px;
 
-  border-radius: 8px 0 0 8px;
+  font-size: 15px;
 
-  font-size: 16px;
+  background: white;
+}
+
+.search-form input::placeholder {
+  color: #777;
 }
 
 .search-form button {
-  height: 42px;
+  width: 110px;
+  height: 48px;
 
   border: none;
 
-  background: #ff7a00;
+  background: linear-gradient(135deg, #ff9800, #ff6f00);
+
   color: white;
 
-  padding: 0 18px;
+  font-size: 16px;
+  font-weight: bold;
+
+  border-radius: 0 12px 12px 0;
 
   cursor: pointer;
 
-  border-radius: 0 8px 8px 0;
-
-  font-size: 15px;
-  font-weight: 600;
+  transition: .3s;
 }
 
 .search-form button:hover {
-  background: #e56d00;
+  background: linear-gradient(135deg, #ff6f00, #e65100);
 }
 
-/* Mobile */
+/* ===========================
+      RESPONSIVE
+=========================== */
 
-@media (max-width: 900px) {
+@media (max-width:1200px) {
+
   .navbar {
-    height: auto;
-    flex-direction: column;
-    gap: 18px;
-    padding: 20px;
-  }
-
-  .logo h2 {
-    font-size: 28px;
+    padding: 18px 25px;
   }
 
   .nav-links {
+    gap: 22px;
+  }
+
+  .search-form input {
+    width: 220px;
+  }
+
+}
+
+@media (max-width:992px) {
+
+  .navbar {
+    flex-direction: column;
+    height: auto;
+
+    padding: 20px;
     gap: 20px;
+  }
+
+  .nav-links {
     flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .right-section {
+    width: 100%;
+
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .language-select select {
+    width: 220px;
+  }
+
+  .search-form {
+    width: 100%;
     justify-content: center;
   }
 
   .search-form input {
-    width: 180px;
+    width: 65%;
   }
+
+}
+
+@media (max-width:600px) {
+
+  .logo h2 {
+    font-size: 1.7rem;
+  }
+
+  .nav-links a {
+    font-size: 16px;
+  }
+
+  .search-form input {
+    width: 170px;
+  }
+
+  .search-form button {
+    width: 90px;
+  }
+
+  .language-select select {
+    width: 170px;
+  }
+
 }

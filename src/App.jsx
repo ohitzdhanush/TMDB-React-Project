@@ -1,32 +1,50 @@
-import React, { useEffect, useState } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Home from './Pages/Home/index.jsx';
-import Upcoming from './Pages/Upcoming/index.jsx';
-import PopularMovies from './Pages/Popular/index.jsx';
-import Navbar from './UiLayout/Navbar/index.jsx';
-import Footer from './UiLayout/Footer/index.jsx';
-import Pagination from './Components/Pagination/index.jsx';
-import About from './Pages/About/index.jsx';
-import MovieDetails from './Pages/MovieDetails/index.jsx';
-import {fetchPopularMovies,fetchUpcomingMovies,searchMovies} from './Services/Index.jsx';
+import React, { useEffect, useState } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./Pages/Home";
+import Upcoming from "./Pages/Upcoming";
+import PopularMovies from "./Pages/Popular";
+import About from "./Pages/About";
+import MovieDetails from "./Pages/MovieDetails";
+import Navbar from "./UiLayout/Navbar";
+import Footer from "./UiLayout/Footer";
+import Pagination from "./Components/Pagination";
+
+import {fetchPopularMovies,fetchUpcomingMovies,fetchMoviesByLanguage,searchMovies,} from "./Services/Index";
 
 const App = () => {
   const [data, setData] = useState([]);
   const [upcoming, setUpcoming] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [language, setLanguage] = useState("all");
 
-  useEffect(() => {fetchPopularMovies(currentPage).then((res) => setData(res)).catch((err) => console.log(err)); }, [currentPage]);
+  // Popular Movies / Language Filter
+  useEffect(() => {
+    if (language === "all") {
+      fetchPopularMovies(currentPage)
+        .then((res) => setData(res))
+        .catch((err) => console.log(err));
+    } else {
+      fetchMoviesByLanguage(language)
+        .then((res) => setData(res))
+        .catch((err) => console.log(err));
+    }
+  }, [currentPage, language]);
 
+  // Upcoming Movies
   useEffect(() => {
     fetchUpcomingMovies(currentPage)
       .then((res) => setUpcoming(res))
       .catch((err) => console.log(err));
   }, [currentPage]);
 
+  // Search
   const handleSearch = async (query) => {
     if (!query.trim()) {
-      fetchPopularMovies(currentPage)
-        .then((res) => setData(res));
+      if (language === "all") {
+        fetchPopularMovies(currentPage).then((res) => setData(res));
+      } else {
+        fetchMoviesByLanguage(language).then((res) => setData(res));
+      }
       return;
     }
 
@@ -38,6 +56,7 @@ const App = () => {
     }
   };
 
+  // Pagination
   const handleNext = () => {
     setCurrentPage((prev) => prev + 1);
   };
@@ -47,13 +66,22 @@ const App = () => {
       setCurrentPage((prev) => prev - 1);
     }
   };
-
   return (
     <BrowserRouter>
       <div className="App">
-        <Navbar onSearch={handleSearch} /> <Routes>
+        <Navbar
+          onSearch={handleSearch}
+          language={language}
+          setLanguage={setLanguage}
+        />
+        <Routes>
+          {/* Home */}
+          <Route
+            path="/"
+            element={
+              <>
+                <Home data={data} />
 
-          <Route path="/" element={<><Home data={data} />
                 <Pagination
                   currentPage={currentPage}
                   handleNext={handleNext}
@@ -62,9 +90,12 @@ const App = () => {
               </>
             }
           />
-
-          <Route path="/popular"element={ <> <PopularMovies data={data} />
-
+          {/* Popular */}
+          <Route
+            path="/popular"
+            element={
+              <>
+                <PopularMovies data={data} />
                 <Pagination
                   currentPage={currentPage}
                   handleNext={handleNext}
@@ -73,27 +104,34 @@ const App = () => {
               </>
             }
           />
-
+          {/* Upcoming */}
           <Route
             path="/upcoming"
             element={
               <>
                 <Upcoming upcoming={upcoming} />
-
                 <Pagination
                   currentPage={currentPage}
                   handleNext={handleNext}
                   handlePrev={handlePrev}
                 />
-              </> 
-            }/>
-          <Route path="/about" element={<About />}/>
-          <Route path="/movie/:id" element={<MovieDetails />}/>
+              </>
+            }
+          />
+          {/* About */}
+          <Route
+            path="/about"
+            element={<About />}
+          />
+          {/* Movie Details */}
+          <Route
+            path="/movie/:id"
+            element={<MovieDetails />}
+          />
         </Routes>
         <Footer />
       </div>
     </BrowserRouter>
   );
-}
-
+};
 export default App;

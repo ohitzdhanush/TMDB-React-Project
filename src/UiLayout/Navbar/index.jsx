@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import useDebounce from "../../Hooks/useDebounce";
+import { useNavigate } from "react-router-dom";
 import "./index.scss";
 
-const Navbar = ({ onSearch }) => {
+const Navbar = ({ onSearch,language, setLanguage  }) => {
   const [searchTerm, setSearchTerm] = useState("");
-  const debouncedSearch = useDebounce(searchTerm, 500);
-
+  const debouncedSearch = useDebounce(searchTerm, 250);
   useEffect(() => {
-    if (debouncedSearch.trim()) {
       onSearch(debouncedSearch);
-    }
+    
   }, [debouncedSearch, onSearch]);
 
   const handleSubmit = (e) => {
@@ -18,6 +17,7 @@ const Navbar = ({ onSearch }) => {
 
     if (searchTerm.trim()) {
       onSearch(searchTerm);
+      navigate("/");
     }
   };
 
@@ -33,6 +33,19 @@ const Navbar = ({ onSearch }) => {
         <Link to="/popular">Popular</Link>
         <Link to="/about">About</Link>
       </div>
+      <div className="language-select">
+  <select
+    value={language}
+    onChange={(e) => setLanguage(e.target.value)}
+  >
+    <option value="all">🌍 All Movies</option>
+    <option value="ta">🇮🇳 Tamil</option>
+    <option value="en">🇺🇸 English</option>
+    <option value="hi">🇮🇳 Hindi</option>
+    <option value="te">🇮🇳 Telugu</option>
+    <option value="kn">🇮🇳 Kannada</option>
+  </select>
+</div>
 
       <form className="search-form" onSubmit={handleSubmit}>
         <input
