@@ -1,3 +1,7 @@
+/* ===========================================
+   Movie Details
+=========================================== */
+
 .movie-details {
   max-width: 1300px;
   margin: 40px auto;
@@ -7,62 +11,70 @@
   align-items: flex-start;
 }
 
-/* ---------------------------
-        Movie Poster
-----------------------------*/
+/* ===========================================
+   Movie Poster
+=========================================== */
 
 .movie-details > img {
   width: 300px;
   height: 450px;
   object-fit: cover;
-  border-radius: 15px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+  border-radius: 16px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, .25);
+  transition: .3s;
 }
 
-/* ---------------------------
-        Movie Info
-----------------------------*/
+.movie-details > img:hover {
+  transform: scale(1.02);
+}
+
+/* ===========================================
+   Movie Information
+=========================================== */
 
 .movie-info {
   flex: 1;
 }
 
 .movie-info h1 {
-  font-size: 34px;
+  font-size: 42px;
   margin-bottom: 20px;
+  font-weight: 700;
 }
 
 .movie-info p {
   font-size: 17px;
   line-height: 1.8;
   margin-bottom: 16px;
+  color: #333;
 }
 
 .movie-info strong {
-  font-weight: 700;
+  color: #111;
 }
 
-/* ---------------------------
-      Trailer Button
-----------------------------*/
+/* ===========================================
+   Trailer Button
+=========================================== */
 
 .trailer-btn {
   display: block;
-  margin: 35px auto 30px;
+  margin: 35px auto;
 
-  padding: 14px 32px;
-
-  background: #e50914;
-  color: #fff;
+  padding: 14px 35px;
 
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
+
+  background: #e50914;
+  color: white;
 
   font-size: 18px;
   font-weight: 600;
 
   cursor: pointer;
-  transition: 0.3s;
+
+  transition: .3s ease;
 }
 
 .trailer-btn:hover {
@@ -70,52 +82,115 @@
   transform: translateY(-3px);
 }
 
-/* ---------------------------
-      Youtube Player
-----------------------------*/
+/* ===========================================
+   Trailer Popup
+=========================================== */
 
-.youtube-player {
-  margin-top: 30px;
-  margin-bottom: 30px;
+.trailer-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
 }
 
-.youtube-player h2 {
-  text-align: center;
-  margin-bottom: 20px;
-  font-size: 28px;
+.modal-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,.65);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.modal-content {
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+
+  width: 90%;
+  max-width: 1100px;
+
+  background: #161616;
+
+  padding: 20px;
+
+  border-radius: 18px;
+
+  box-shadow: 0 20px 50px rgba(0,0,0,.6);
+
+  animation: popup .35s ease;
 }
 
-.youtube-player iframe {
+.modal-content iframe {
   width: 100%;
-  max-width: 850px;
-  height: 480px;
-
-  display: block;
-  margin: auto;
-
-  border-radius: 15px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  height: 600px;
+  border-radius: 12px;
 }
 
-/* ---------------------------
-        Cast Section
-----------------------------*/
+.close-btn {
+  position: absolute;
+
+  top: -18px;
+  right: -18px;
+
+  width: 46px;
+  height: 46px;
+
+  border: none;
+  border-radius: 50%;
+
+  background: #e50914;
+  color: white;
+
+  font-size: 22px;
+  font-weight: bold;
+
+  cursor: pointer;
+
+  transition: .3s;
+}
+
+.close-btn:hover {
+  background: #b20710;
+  transform: rotate(90deg);
+}
+
+@keyframes popup {
+
+  from{
+    opacity:0;
+    transform:translate(-50%,-55%) scale(.9);
+  }
+
+  to{
+    opacity:1;
+    transform:translate(-50%,-50%) scale(1);
+  }
+
+}
+
+/* ===========================================
+   Cast Section
+=========================================== */
 
 .cast-heading {
   text-align: center;
-  margin: 30px 0 20px;
-  font-size: 26px;
-  font-weight: bold;
+  margin: 40px 0 25px;
+  font-size: 28px;
+  font-weight: 700;
 }
 
 .cast-container {
   display: flex;
   justify-content: center;
-  gap: 18px;
+  gap: 20px;
 
   overflow-x: auto;
+  overflow-y: hidden;
 
-  padding: 10px 0 20px;
+  padding: 15px 5px 25px;
+
+  scroll-behavior: smooth;
 }
 
 .cast-container::-webkit-scrollbar {
@@ -123,32 +198,33 @@
 }
 
 .cast-container::-webkit-scrollbar-thumb {
-  background: #999;
-  border-radius: 10px;
+  background: #c5c5c5;
+  border-radius: 20px;
 }
 
 .cast-card {
-  min-width: 130px;
+  min-width: 140px;
   text-align: center;
+  cursor: pointer;
 }
 
 .cast-card img {
-  width: 130px;
-  height: 190px;
+  width: 140px;
+  height: 205px;
 
   object-fit: cover;
 
-  border-radius: 10px;
+  border-radius: 12px;
 
-  transition: 0.3s;
+  transition: .3s;
 }
 
-.cast-card img:hover {
-  transform: scale(1.05);
+.cast-card:hover img {
+  transform: scale(1.06);
 }
 
 .cast-card h4 {
-  margin-top: 10px;
+  margin-top: 12px;
   font-size: 16px;
   font-weight: 600;
 }
@@ -159,65 +235,74 @@
   color: #666;
 }
 
-/* ---------------------------
-      Mobile Responsive
-----------------------------*/
+/* ===========================================
+   Mobile Responsive
+=========================================== */
 
-@media (max-width: 900px) {
-  .movie-details {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
+@media(max-width:900px){
 
-  .movie-details > img {
-    width: 250px;
-    height: auto;
-  }
+.movie-details{
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+}
 
-  .movie-info {
-    width: 100%;
-  }
+.movie-details>img{
+    width:240px;
+    height:auto;
+}
 
-  .movie-info h1 {
-    font-size: 30px;
-  }
+.movie-info{
+    width:100%;
+}
 
-  .movie-info p {
-    font-size: 16px;
-  }
+.movie-info h1{
+    font-size:32px;
+}
 
-  .trailer-btn {
-    font-size: 16px;
-    padding: 12px 26px;
-  }
+.movie-info p{
+    font-size:15px;
+}
 
-  .youtube-player h2 {
-    font-size: 22px;
-  }
+.trailer-btn{
+    width:220px;
+    font-size:16px;
+}
 
-  .youtube-player iframe {
-    height: 250px;
-  }
+.modal-content{
+    width:95%;
+    padding:12px;
+}
 
-  .cast-container {
-    justify-content: flex-start;
-  }
+.modal-content iframe{
+    height:250px;
+}
 
-  .cast-card {
-    min-width: 110px;
-  }
+.close-btn{
+    width:38px;
+    height:38px;
+    font-size:18px;
+}
 
-  .cast-card img {
-    width: 110px;
-    height: 160px;
-  }
+.cast-container{
+    justify-content:flex-start;
+}
 
-  .cast-card h4 {
-    font-size: 14px;
-  }
+.cast-card{
+    min-width:110px;
+}
 
-  .cast-card p {
-    font-size: 12px;
-  }
+.cast-card img{
+    width:110px;
+    height:160px;
+}
+
+.cast-card h4{
+    font-size:14px;
+}
+
+.cast-card p{
+    font-size:12px;
+}
+
 }
