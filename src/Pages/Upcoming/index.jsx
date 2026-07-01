@@ -1,10 +1,6 @@
 import React from "react";
 import {
-  Card,
-  CardTitle,
-  CardImage,
-  CardDescription,
-} from "../../Components/Cards";
+Card,CardTitle,CardImage,CardDescription,} from "../../Components/Cards";
 
 import { useNavigate } from "react-router-dom";
 import "./index.scss";

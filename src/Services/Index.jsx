@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-const baseUrl = 'https://api.themoviedb.org/3';
-const api_key = '999eb2f1492df5dbc3ccd2cb20aebd39';
+const baseUrl = import.meta.env.VITE_BASE_URL;
+const api_key = import.meta.env.VITE_TMDB_API_KEY;
 
 // Popular Movies
 export async function fetchPopularMovies(page = 1) {

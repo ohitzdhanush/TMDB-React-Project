@@ -77,7 +77,7 @@ const MovieDetails = () => {
         src={
           movie.poster_path
             ? `https://image.tmdb.org/t/p/original/${movie.poster_path}`
-            : "https://via.placeholder.com/300x450?text=No+Image"
+            : "https://dummyimage.com/185x278/cccccc/000000&text=No+Image"
         }
         alt={movie.title}
       />
