@@ -1,15 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { signOut } from "firebase/auth";
+import { auth } from "../../Services/FireBase";
 import useDebounce from "../../Hooks/useDebounce";
-import { useNavigate } from "react-router-dom";
 import "./index.scss";
 
-const Navbar = ({ onSearch,language, setLanguage  }) => {
+const Navbar = ({ onSearch, language, setLanguage }) => {
   const [searchTerm, setSearchTerm] = useState("");
+
+  const navigate = useNavigate();
+
+  const user = JSON.parse(localStorage.getItem("user"));
+
   const debouncedSearch = useDebounce(searchTerm, 250);
+
   useEffect(() => {
-      onSearch(debouncedSearch);
-    
+    onSearch(debouncedSearch);
   }, [debouncedSearch, onSearch]);
 
   const handleSubmit = (e) => {
@@ -17,7 +23,19 @@ const Navbar = ({ onSearch,language, setLanguage  }) => {
 
     if (searchTerm.trim()) {
       onSearch(searchTerm);
-      navigate("/");
+      navigate("/home");
+    }
+  };
+
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+
+      localStorage.removeItem("user");
+
+      navigate("/login", { replace: true });
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -33,21 +51,25 @@ const Navbar = ({ onSearch,language, setLanguage  }) => {
         <Link to="/popular">Popular</Link>
         <Link to="/about">About</Link>
       </div>
-      <div className="language-select">
-  <select
-    value={language}
-    onChange={(e) => setLanguage(e.target.value)}
-  >
-    <option value="all">🌍 All Movies</option>
-    <option value="ta">🇮🇳 Tamil</option>
-    <option value="en">🇺🇸 English</option>
-    <option value="hi">🇮🇳 Hindi</option>
-    <option value="te">🇮🇳 Telugu</option>
-    <option value="kn">🇮🇳 Kannada</option>
-  </select>
-</div>
 
-      <form className="search-form" onSubmit={handleSubmit}>
+      <div className="language-select">
+        <select
+          value={language}
+          onChange={(e) => setLanguage(e.target.value)}
+        >
+          <option value="all">🌍 All Movies</option>
+          <option value="ta">🇮🇳 Tamil</option>
+          <option value="en">🇺🇸 English</option>
+          <option value="hi">🇮🇳 Hindi</option>
+          <option value="te">🇮🇳 Telugu</option>
+          <option value="kn">🇮🇳 Kannada</option>
+        </select>
+      </div>
+
+      <form
+        className="search-form"
+        onSubmit={handleSubmit}
+      >
         <input
           type="text"
           placeholder="Search Movies..."
@@ -59,8 +81,30 @@ const Navbar = ({ onSearch,language, setLanguage  }) => {
           Search
         </button>
       </form>
+
+      {user && (
+        <div className="profile-menu">
+          <img
+            src={user.photo}
+            alt={user.name}
+            className="profile-img"
+          />
+
+          <span>{user.name}</span>
+
+          <div className="dropdown">
+            <Link to="/profile">
+              Profile
+            </Link>
+
+            <button onClick={handleLogout}>
+              Logout
+            </button>
+          </div>
+        </div>
+      )}
     </nav>
   );
-}
+};
 
 export default Navbar;
